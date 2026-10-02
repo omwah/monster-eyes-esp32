@@ -472,7 +472,10 @@ bool Adafruit_Monster_Eyes::calcDisplacement(void) {
         const float a = atan2f(d, h);           // 0 to pi/2 from centre
         const float pa = a / (float)M_PI_2 * (float)_mapRadius;
         dx /= d;
-        *ptr++ = (uint8_t)(dx * pa) - x;
+        // Subtract BEFORE narrowing. At 300px, mapRadius exceeds 255:
+        // narrowing the absolute map coordinate wraps, producing holes and
+        // alternating black stripes in the rendered eye.
+        *ptr++ = (uint8_t)(dx * pa - (float)x);
       } else {
         *ptr++ = 255; // Outside the eye
       }

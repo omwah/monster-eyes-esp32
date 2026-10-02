@@ -146,7 +146,7 @@ bool MonsterController::setStyle(uint8_t style) {
         _eyes->~Adafruit_Monster_Eyes();
         _eyes = nullptr;
     }
-    _display.clear(TFT_BLACK);
+    _display.clear(0);
     _eyes = new (_storage) Adafruit_Monster_Eyes(&_display);
     _eyes->setVerbose(Serial);
     _eyes->setStorageEnabled(true);

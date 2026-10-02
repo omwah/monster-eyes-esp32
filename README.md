@@ -417,6 +417,37 @@ micromamba run -n platformio pio run -t upload
 not kept under `data/` goes with it. To add or replace one package on a running
 device instead, use `tools/upload_package.py` or the web interface.
 
+### LilyGo T-RGB 2.1-inch (H583/H597)
+
+The `lilygo_trgb_21` environment uses LilyGo's ST7701 480×480 RGB pin map and
+Arduino_GFX initialization sequence. It forces a single eye and expands the
+renderer’s 240×240 output to fill the 480×480 framebuffer. The engine’s eyelid
+tables use 8-bit coordinates and cannot safely render natively above 240px;
+attempting 300px caused broken lids, vertical stripes and a black rectangle.
+The expanded pixels cover the full framebuffer; the artwork's eyelids can
+still leave black areas above and below the visible eye. The panel is round,
+so its square corners are outside
+the visible glass. This initial target runs autonomous gaze and blinking; press
+BOOT (GPIO0) briefly to blink, or hold it for 0.7 seconds and release to switch
+styles. Touch, audio, battery, web UI and sleep are **not** supported yet; no
+Hosyond peripheral pins are reused. The 2.8-inch panel needs a different
+initialization sequence and is not supported by this environment.
+
+Before flashing, back up the **entire** original 16 MB flash, including factory
+firmware, partitions and data. For the currently connected device this was done
+in `../stock-firmware/lilygo-t-rgb-<board-mac>-16mb.bin` with a `.sha256`
+file. Confirm the USB serial ID before uploading: other boards may be connected.
+
+```sh
+PORT=/dev/serial/by-id/usb-Espressif_USB_JTAG_serial_debug_unit_XX:XX:XX:XX:XX:XX-if00
+micromamba run -n platformio pio run -e lilygo_trgb_21
+micromamba run -n platformio pio run -e lilygo_trgb_21 -t uploadfs --upload-port "$PORT"
+micromamba run -n platformio pio run -e lilygo_trgb_21 -t upload --upload-port "$PORT"
+```
+
+To restore the original image, write the saved full-flash `.bin` at offset 0
+using esptool on the **same board**; do not restore it to a different device.
+
 ## History
 
 This started as `projects/monster-eyes-port` in

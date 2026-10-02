@@ -2,7 +2,11 @@
 
 #include <Adafruit_Monster_Eyes.h>
 #include <vector>
+#ifdef MONSTER_EYES_TRGB
+#include "trgb_display.h"
+#else
 #include "composite_tft_display.h"
+#endif
 
 class MonsterController {
 public:
@@ -22,7 +26,7 @@ public:
     bool setPackageOrder(const String &csv);
     bool reloadPackages(const String &preferredId = "");
     uint16_t screenBackground() const {
-        return _eyes ? _eyes->config().eyelidColor : TFT_BLACK;
+        return _eyes ? _eyes->config().eyelidColor : 0;
     }
     void animate() {
         if (_eyes) _eyes->animate();

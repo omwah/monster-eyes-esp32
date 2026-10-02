@@ -609,6 +609,9 @@ void Adafruit_Monster_Eyes::applyConfigExtensions(const void *variantPtr) {
     }
   }
 
+#ifdef MONSTER_EYES_FORCE_SINGLE_EYE
+  _singleEye = true; // This panel can physically show only one eye.
+#endif
   if (_display) {
     // Always told, not only when single: the sketch keeps one backend across
     // style changes, so a package that says nothing has to put back the pair a
