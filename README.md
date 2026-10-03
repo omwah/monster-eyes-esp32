@@ -426,12 +426,17 @@ tables use 8-bit coordinates and cannot safely render natively above 240px;
 attempting 300px caused broken lids, vertical stripes and a black rectangle.
 The expanded pixels cover the full framebuffer; the artwork's eyelids can
 still leave black areas above and below the visible eye. The panel is round,
-so its square corners are outside
-the visible glass. This initial target runs autonomous gaze and blinking; press
-BOOT (GPIO0) briefly to blink, or hold it for 0.7 seconds and release to switch
-styles. Touch, audio, battery, web UI and sleep are **not** supported yet; no
-Hosyond peripheral pins are reused. The 2.8-inch panel needs a different
-initialization sequence and is not supported by this environment.
+so its square corners are outside the visible glass. The 2.1-inch CST820 (0x15) and FT3267 (0x38) touch
+controllers are probed over I2C. Drag to move the gaze, tap to blink, and
+swipe left/right to select the next/previous style. A style name appears near
+the bottom of the circle for 4 seconds after switching (or at startup) and
+hides as soon as a drag or swipe begins. A single press and release of
+BOOT (GPIO0) also switches to the next style. Audio, battery, web UI and sleep
+are **not** supported yet; no Hosyond peripheral pins are reused. The 2.8-inch
+panel needs a different initialization sequence and is not supported by this
+environment. The serial console reports measured FPS and average frame, scaling and framebuffer flush
+times every five seconds. The 2× scaling path writes paired RGB565 pixels
+directly to the framebuffer to avoid per-pixel divisions.
 
 Before flashing, back up the **entire** original 16 MB flash, including factory
 firmware, partitions and data. For the currently connected device this was done
