@@ -439,9 +439,9 @@ times every five seconds. The 2× scaling path writes paired RGB565 pixels
 directly to the framebuffer to avoid per-pixel divisions.
 
 Before flashing, back up the **entire** original 16 MB flash, including factory
-firmware, partitions and data. For the currently connected device this was done
-in `../stock-firmware/lilygo-t-rgb-<board-mac>-16mb.bin` with a `.sha256`
-file. Confirm the USB serial ID before uploading: other boards may be connected.
+firmware, partitions and data, to something like
+`lilygo-t-rgb-<board-mac>-16mb.bin` kept outside this repository with a
+`.sha256` file beside it. Confirm the USB serial ID before uploading: other boards may be connected.
 
 ```sh
 PORT=/dev/serial/by-id/usb-Espressif_USB_JTAG_serial_debug_unit_XX:XX:XX:XX:XX:XX-if00
