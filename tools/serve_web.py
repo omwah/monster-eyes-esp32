@@ -1,6 +1,6 @@
 """Serve web/ with a fake device API so the UI can be developed without hardware.
 
-    python projects/monster-eyes-port/tools/serve_web.py
+    python tools/serve_web.py
     open http://localhost:8000
 """
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer

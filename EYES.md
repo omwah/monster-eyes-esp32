@@ -19,14 +19,14 @@ this panel and their wide spherical sclera maps projected into square ones; the
 from the ones written here -- `eyelidIndex` and the rest.
 
 **Eight came from [Adafruit Uncanny Eyes](https://github.com/adafruit/Uncanny_Eyes)**
-by Phil Burgess, also MIT, by way of the sibling `projects/uncanny-eyes`, where
+by Phil Burgess, also MIT, by way of [`uncanny-eyes`](https://github.com/omwah/esp32-pocket-toy/tree/main/projects/uncanny-eyes) in esp32-pocket-toy, where
 they are maintained as editable PNGs: `hazel`, `cat`, `dragon`, `newt`,
 `no_sclera`, `nauga`, `owl` and `terminator`. `owl` is the odd one -- upstream
 ships no conversion directory for it, so its eyelids were rebuilt from the
 arrays in `owlEye.h` and its flat sclera and iris replaced with feathered tissue
 and a golden iris.
 
-**`big_anime` is a design of its own**, drawn for the sibling project rather
+**`big_anime` is a design of its own**, drawn for that project rather
 than taken from either upstream: a large eye with a sapphire iris and oversized
 catchlights. This renderer draws it without the production version's glints.
 
@@ -35,7 +35,7 @@ goat replaced converted artwork that was wrong about the animal; Sauron and
 Pomni are new. The rest of this file is about those four.
 
 Sounds are package-local, and mostly CC0 or CC BY; the table in
-`projects/uncanny-eyes/audio/README.md` lists each one's source and licence.
+[`uncanny-eyes/audio/README.md`](https://github.com/omwah/esp32-pocket-toy/tree/main/projects/uncanny-eyes/audio/README.md) lists each one's source and licence.
 `validation/migrated-styles.json` records, package by package, which of the
 above it is and what was accepted as different from the artwork it started
 from.
@@ -49,7 +49,7 @@ that is the only way to widen one sideways. The renderer builds the slit itself,
 so the texture is iris all the way down and the fibres reach the pupil edge:
 
 ```sh
-python projects/monster-eyes-port/tools/make_deer_eye.py
+python tools/make_deer_eye.py
 ```
 
 The pupil is a bar with blunt ends (`slitPupilHorizontal` and
@@ -85,7 +85,7 @@ it started from was a cat's eye under another name -- a vertical slit in a
 grey-blue iris, neither of which a goat has.
 
 ```sh
-python projects/monster-eyes-port/tools/make_goat_eye.py
+python tools/make_goat_eye.py
 ```
 
 It is the worked example for `tools/eye_textures.py`, the shared artwork
@@ -138,7 +138,7 @@ downward gaze, since a head is the one thing this toy has not got.
 `data/eyes/sauron` is an original package. Its artwork is generated too:
 
 ```sh
-python projects/monster-eyes-port/tools/make_sauron_eye.py
+python tools/make_sauron_eye.py
 ```
 
 The flames are drawn straight into the renderer's polar texture space, where
@@ -185,7 +185,7 @@ heavy black outline, three straight lashes off the rim, and a six-wedge red and
 blue pinwheel for an iris, which is the pupil as well.
 
 ```sh
-python projects/monster-eyes-port/tools/make_pomni_eye.py
+python tools/make_pomni_eye.py
 ```
 
 It is the one drawn package rather than a grown one, and nearly every choice

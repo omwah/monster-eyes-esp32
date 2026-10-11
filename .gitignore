@@ -1,0 +1,8 @@
+.pio/
+.pio-venv/
+*.bin
+generated/*
+!generated/.gitkeep
+sim/build/
+__pycache__/
+*.pyc

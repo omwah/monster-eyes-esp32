@@ -48,7 +48,8 @@ async function post(url, data) {
 function renderStatus() {
   var battery = s.batteryPercent === null ? 'Unavailable' : s.batteryPercent + '%';
   // The device can only see whether a USB host is attached, not whether a
-  // charger is; see projects/power-diagnostics for why there is nothing better.
+  // charger is; see esp32-pocket-toy's projects/power-diagnostics for why
+  // there is nothing better.
   var power = s.externalPower === 'usb' ? 'USB connected'
     : s.externalPower === 'battery' ? 'Battery' : 'Unknown';
   var audio = s.audioPresent

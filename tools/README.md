@@ -5,9 +5,9 @@ They need Python with numpy and nothing else; every one of them can be run from
 anywhere and writes relative to its own location.
 
 ```sh
-python projects/monster-eyes-port/tools/make_goat_eye.py
-python projects/monster-eyes-port/tools/make_deer_eye.py
-python projects/monster-eyes-port/tools/make_sauron_eye.py
+python tools/make_goat_eye.py
+python tools/make_deer_eye.py
+python tools/make_sauron_eye.py
 ```
 
 [`../EYES.md`](../EYES.md) describes the four packages these scripts

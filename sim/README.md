@@ -56,7 +56,7 @@ cmake --build build -j
 
 ## Running
 
-Paths are relative to `projects/monster-eyes-port`, since `--assets` defaults to
+Paths are relative to the repository root, since `--assets` defaults to
 `data`:
 
 ```sh

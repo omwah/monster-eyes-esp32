@@ -9,10 +9,10 @@ Preferences prefs;
 
 // This board brings no external-power signal out to a GPIO: every unassigned
 // pin was measured holding the same state with USB in and out (see
-// projects/power-diagnostics). The USB peripheral's own view is the best
-// available, and it is narrower than "external power" -- it follows
-// start-of-frame packets, so it means a USB host is connected. A dumb charger
-// sends none and reads here as battery.
+// esp32-pocket-toy's projects/power-diagnostics). The USB peripheral's own
+// view is the best available, and it is narrower than "external power" -- it
+// follows start-of-frame packets, so it means a USB host is connected. A dumb
+// charger sends none and reads here as battery.
 const char *powerSource() {
     return HWCDC::isPlugged() ? "usb" : "battery";
 }

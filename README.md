@@ -79,7 +79,7 @@ from the render loop, so extra asset requests would stall the eye animation.
 To work on the layout without flashing anything, run
 
 ```sh
-python projects/monster-eyes-port/tools/serve_web.py
+python tools/serve_web.py
 ```
 
 and open `http://localhost:8000`. It serves `web/` alongside a fake device API.
@@ -99,8 +99,8 @@ muted, or the package has no sounds.
 
 The status JSON reports `externalPower` as `usb` or `battery`. This board
 brings no external-power signal out to a GPIO -- every unassigned pin holds the
-same state with the cable in and out, which `projects/power-diagnostics`
-measured -- so the value comes from the USB peripheral's own start-of-frame
+same state with the cable in and out, which
+[`power-diagnostics`](https://github.com/omwah/esp32-pocket-toy/tree/main/projects/power-diagnostics) measured -- so the value comes from the USB peripheral's own start-of-frame
 detection. It therefore means "a USB host is connected", and a dumb wall
 charger reads as `battery`.
 
@@ -205,9 +205,9 @@ would draw; only the display backend is different. It also captures frame
 sequences as PNGs with JSON state sidecars, for analysis without hardware.
 
 ```sh
-cmake -B projects/monster-eyes-port/sim/build projects/monster-eyes-port/sim
-cmake --build projects/monster-eyes-port/sim/build -j
-cd projects/monster-eyes-port && ./sim/build/eye-sim --eye deer
+cmake -B sim/build sim
+cmake --build sim/build -j
+./sim/build/eye-sim --eye deer
 ```
 
 `--panel` (or `p` in the window) opens a live `config.eye` editor to the right of
@@ -401,7 +401,7 @@ styles carried over from Uncanny Eyes. It checks the manifest and every asset
 each package refers to:
 
 ```sh
-python projects/monster-eyes-port/tools/validate_migration.py
+python tools/validate_migration.py
 ```
 
 ## Build and flash
@@ -409,10 +409,16 @@ python projects/monster-eyes-port/tools/validate_migration.py
 `uploadfs` writes the packages, `upload` writes the firmware:
 
 ```sh
-micromamba run -n platformio pio run -d projects/monster-eyes-port -t uploadfs
-micromamba run -n platformio pio run -d projects/monster-eyes-port -t upload
+micromamba run -n platformio pio run -t uploadfs
+micromamba run -n platformio pio run -t upload
 ```
 
 `uploadfs` replaces the whole partition, so anything uploaded to the device and
 not kept under `data/` goes with it. To add or replace one package on a running
 device instead, use `tools/upload_package.py` or the web interface.
+
+## History
+
+This started as `projects/monster-eyes-port` in
+[esp32-pocket-toy](https://github.com/omwah/esp32-pocket-toy), and its history
+was carried over when it moved here.
