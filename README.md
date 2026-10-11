@@ -458,3 +458,10 @@ using esptool on the **same board**; do not restore it to a different device.
 This started as `projects/monster-eyes-port` in
 [esp32-pocket-toy](https://github.com/omwah/esp32-pocket-toy), and its history
 was carried over when it moved here.
+
+## License
+
+MIT; see [`LICENSE`](LICENSE). The vendored renderer in
+`lib/Adafruit_Monster_Eyes` and Dear ImGui under `sim/third_party` keep their
+own MIT licenses, and package artwork and sounds carry the terms listed in
+[`EYES.md`](EYES.md).
